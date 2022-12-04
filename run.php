@@ -9,7 +9,10 @@ spl_autoload_register(function ($className) {
 
 error_reporting(E_ERROR | E_PARSE | E_WARNING);
 
-$rs = new RuckSack();
+$runMode = $argv[1] ?? '';
+
+$c = new Cleaner($runMode);
+print_r($c->countDupes('Partial'));
 
 echo PHP_EOL;
 echo PHP_EOL;
@@ -32,3 +35,9 @@ echo PHP_EOL;
 // $rps->calculateScores();
 // $rps->sumScores();
 // print_r($rps->sum);
+
+// ex 3
+// $rs = new RuckSack();
+// // $letter = $rs->addPriorities();
+// $letter = $rs->findWithRegex();
+// print_r('result: ' . $rs->score);
