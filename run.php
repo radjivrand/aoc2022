@@ -7,23 +7,17 @@ spl_autoload_register(function ($className) {
     require '/Users/arne/dev/' . str_replace('\\', '/', $className) . '.php';
 });
 
-error_reporting(E_ERROR | E_PARSE | E_WARNING);
+error_reporting(-1);
 
 $runMode = $argv[1] ?? '';
 
-$c = new Cleaner($runMode);
-print_r($c->countDupes('Partial'));
+// echo PHP_EOL;
+// echo PHP_EOL;
+// echo '##################' . PHP_EOL;
+// echo '###  AoC 2022  ###' . PHP_EOL;
+// echo '##################' . PHP_EOL;
 
 echo PHP_EOL;
-echo PHP_EOL;
-echo '##################' . PHP_EOL;
-echo '###  AoC 2022  ###' . PHP_EOL;
-echo '##################' . PHP_EOL;
-
-
-echo PHP_EOL;
-
-
 
 // ex 1
 // $cal = new Calorie();
@@ -41,3 +35,15 @@ echo PHP_EOL;
 // // $letter = $rs->addPriorities();
 // $letter = $rs->findWithRegex();
 // print_r('result: ' . $rs->score);
+
+// ex4
+// $c = new Cleaner($runMode);
+// print_r($c->countDupes('Partial'));
+
+// ex 5
+// $crane = new Crane($runMode);
+// $crane->output();
+// $crane->work();
+// $crane->workMore();
+// print_r($crane->res);
+
