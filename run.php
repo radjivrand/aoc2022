@@ -47,3 +47,6 @@ echo PHP_EOL;
 // $crane->workMore();
 // print_r($crane->res);
 
+// ex 6
+// $r = new Radio($runMode);
+// print_r($r->findMarker(14));
