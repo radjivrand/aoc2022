@@ -11,6 +11,10 @@ error_reporting(-1);
 
 $runMode = $argv[1] ?? '';
 
+// $a = new FileSystem($runMode);
+// $a = new Fs($runMode);
+$a = new Tree($runMode);
+
 // echo PHP_EOL;
 // echo PHP_EOL;
 // echo '##################' . PHP_EOL;
