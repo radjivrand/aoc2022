@@ -5,34 +5,17 @@ Class Fs {
 	public $filePath = '/Users/arne/dev/aoc2022/input_07/input.txt';
 	public $testPath = '/Users/arne/dev/aoc2022/input_07/input_test.txt';
 	public $lines;
-	public $folders = ['/' => [ 'parent' => 'root']];
+	public $folders = [];
 	public $count;
 	public $curFolder;
 	public $parFolder;
 
-	public $test = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
 
 	public function __construct(string $test)
 	{
 		$fileName = $test == '' ? $this->filePath : $this->testPath;
 		$this->lines = file($fileName, FILE_IGNORE_NEW_LINES);
 
-		// foreach ($this->lines as $key => $line) {
-		// 	// print_r('alkafjdl');
-		// 	print_r($line);
-		// 	print_r(':   ');
-		// 	if (preg_match('/\$ ls/', $line)) {
-		// 		print_r($this->hasFoldersAfterLs($key) ? 'jep' : 'ei');
-		// 	}
-
-		// 		print_r(PHP_EOL);
-		// 	# code...
-		// }
-
-			$this->shuffle();
-
-
-			print_r($this->lines);
 		// if is dir
 		// goto where dir
 
@@ -42,7 +25,49 @@ Class Fs {
 		// 		contains folders?
 		// 			- no: replace with files array
 		// 			- yes: cd dir
-							
+
+
+		// if dir X, find cd X
+		// if has only files move 
+		//
+		//
+		//
+	}
+
+
+
+
+	public function createsSomeStructure()
+	{
+		foreach ($this->lines as $key => &$line) {
+			if ($line == '$ ls') {
+				$innerArr = [];
+				$curKey = $key + 1;
+				do {
+					$nameAndSize = explode(' ', $this->lines[$curKey]);
+					if ($nameAndSize[0] == 'dir') {
+						$innerArr[$nameAndSize[1]] = [];
+					} else {
+						$innerArr[$nameAndSize[1]] = $nameAndSize[0];
+					}
+
+					$curKey++;
+				} while (isset($this->lines[$curKey]) && $this->lines[$curKey][0] != '$');
+
+				$newKey = preg_replace('/\$ cd (.+)/', '\1', $this->lines[$key - 1]);
+				$this->folders[$newKey] = $innerArr;
+			}
+		}
+	}
+
+	public function containsFolders($arr)
+	{
+		foreach ($arr as $key => $value) {
+			if (gettype($value) == 'array') {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public function shuffle()

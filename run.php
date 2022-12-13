@@ -12,8 +12,9 @@ error_reporting(-1);
 $runMode = $argv[1] ?? '';
 
 // $a = new FileSystem($runMode);
-// $a = new Fs($runMode);
-$a = new Tree($runMode);
+// $fs = new Fs($runMode);
+$r = new Register($runMode);
+
 
 // echo PHP_EOL;
 // echo PHP_EOL;
@@ -54,3 +55,7 @@ echo PHP_EOL;
 // ex 6
 // $r = new Radio($runMode);
 // print_r($r->findMarker(14));
+
+// ex 8
+// $tree = new Tree($runMode);
+
