@@ -46,6 +46,8 @@ Class Register {
 			$res += $value * $vals[$value];
 		}
 
+		print_r($vals);
+
 		print_r($res);
 	}
 }
