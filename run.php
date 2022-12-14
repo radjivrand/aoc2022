@@ -13,8 +13,9 @@ $runMode = $argv[1] ?? '';
 
 // $a = new FileSystem($runMode);
 // $fs = new Fs($runMode);
-$r = new Register($runMode);
-
+// $r = new Register($runMode)
+;
+$rope = new Rope($runMode);
 
 // echo PHP_EOL;
 // echo PHP_EOL;
