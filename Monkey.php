@@ -48,8 +48,8 @@ Class Monkey {
 			$this->monkeys[] = $monkey;
 		}
 
-
-		for ($i=0; $i < 20 ; $i++) { 
+		$a = time();
+		for ($i=0; $i < 10 ; $i++) { 
 			$this->run();
 		}
 
@@ -58,7 +58,12 @@ Class Monkey {
 		// rsort($duo);
 		$res = $duo[0] * $duo[1];
 		print_r($duo);
-		print_r($res);
+
+		print_r(PHP_EOL);
+		$b = time();
+		print_r($b - $a);
+		print_r(PHP_EOL);
+		// print_r($res);
 	}
 
 	public function run()
@@ -66,22 +71,31 @@ Class Monkey {
 		foreach ($this->monkeys as &$monkey) {
 			foreach ($monkey['items'] as $itKey => $item) {
 				// print_r($item . PHP_EOL);
-					$a = ($monkey['first'] == 'old') ? $item : $monkey['first'];
-					$b = ($monkey['second'] == 'old') ? $item : $monkey['second'];
+				$a = ($monkey['first'] == 'old') ? $item : $monkey['first'];
+				$b = ($monkey['second'] == 'old') ? $item : $monkey['second'];
 
+				print_r($a);
 				if ($monkey['operand'] == '+') {
-					$worry = $a + $b;
+					print_r('+');
+					$worry = gmp_add($a, $b);
 				} else {
-					$worry = $a * $b;
+					$worry = gmp_mul($a, $b);
+					print_r('*');
 				}
+				print_r($b);
 
-				$worry = floor($worry / 3);
+				// $worry = floor($worry / 3);
 
-				if ($worry % $monkey['divider'] == 0) {
+				// print_r('worry: ' . $worry . PHP_EOL);
+
+				if (gmp_mod($worry, $monkey['divider']) == 0) {
+					print_r('mod ' . $monkey['divider'] . ' is 0');
 					$this->monkeys[$monkey['pos']]['items'][] = $worry;
 				} else {
+					print_r('mod ' . $monkey['divider'] . ' is not 0');
 					$this->monkeys[$monkey['neg']]['items'][] = $worry;
 				}
+				print_r(PHP_EOL);
 				unset($monkey['items'][$itKey]);
 				$monkey['count']++;
 			}
