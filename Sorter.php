@@ -5,7 +5,8 @@ Class Sorter {
 	public $filePath = '/Users/arne/dev/aoc2022/input_07/input.txt';
 	public $testPath = '/Users/arne/dev/aoc2022/input_07/input_test.txt';
 	public $lines;
-	public $curIndex;
+	public $totalDisk = 70000000;
+	public $spaceNeeded = 30000000;
 
 	public function __construct(string $test)
 	{
@@ -24,8 +25,41 @@ Class Sorter {
 		}
 
 		$this->clearCommands();
-		$this->getSumForBelowHundredK();
-		// print_r($this->lines);
+		$res = $this->findSmallestFolder();
+		print_r($res);
+	}
+
+	public function findSmallestFolder()
+	{
+		$currentSize = $this->getOuterSize();
+		$currentFreeSpace = $this->totalDisk - $currentSize;
+		$sizeToFind = $this->spaceNeeded - $currentFreeSpace;
+
+		$candidates = [];
+		foreach ($this->lines as $line) {
+			if (preg_match_all('/(\d+)\s\:dir\s/', $line, $matches)) {
+				$curSize = (int)$matches[1][0];
+				if ($curSize >= $sizeToFind) {
+					$candidates[] = $curSize;
+				}
+			}
+		}
+
+		sort($candidates);
+		return $candidates[0];
+	}
+
+	public function getOuterSize()
+	{
+		$sum = 0;
+		foreach ($this->lines as $key => $value) {
+			if (preg_match_all('/^(\d+)/', $value, $matches)) {
+				$curSize = (int)$matches[1][0];
+				$sum += $curSize;
+			}
+		}
+
+		return $sum;
 	}
 
 	public function getSumForBelowHundredK()
@@ -40,7 +74,7 @@ Class Sorter {
 			}
 		}
 
-		print_r($sum);
+		return $sum;
 	}
 
 	public function calculateSizes($arr)
