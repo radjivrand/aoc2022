@@ -13,10 +13,11 @@ $runMode = $argv[1] ?? '';
 
 // $a = new FileSystem($runMode);
 // $fs = new Fs($runMode);
+$fs = new Sorter($runMode);
 // $r = new Register($runMode);
 // $rope = new Rope($runMode);
+// $m = new Monkey($runMode);
 
-$m = new Monkey($runMode);
 
 // echo PHP_EOL;
 // echo PHP_EOL;
