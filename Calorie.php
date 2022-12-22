@@ -22,6 +22,7 @@ Class Calorie {
 					$elf = [];
 				}
 			}
+
 		}	
 
 		public function getSumForElf($value='')
@@ -34,6 +35,7 @@ Class Calorie {
 
 				$elf['max'] = $sum;
 			}
+			print_r($this->elves);
 		}
 
 		public function getTotal(int $numberOfElves = 1)
