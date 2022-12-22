@@ -76,7 +76,7 @@ Class Rope {
 				}
 				$this->tailTrack[] = $this->curTailPos;
 			}
-			// $this->output();
+			$this->output();
 		}
 
 		$res = [];

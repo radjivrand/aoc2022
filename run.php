@@ -13,6 +13,7 @@ $runMode = $argv[1] ?? '';
 
 // $r = new Register($runMode);
 // $rope = new Rope($runMode);
+$snake = new Snake($runMode);
 // $m = new Monkey($runMode);
 
 
@@ -25,7 +26,7 @@ $runMode = $argv[1] ?? '';
 echo PHP_EOL;
 
 // ex 1
-// $cal = new Calorie();
+// $cal = new Calorie($runMode);
 // $cal->getSumForElf();
 // $res = $cal->getTotal(2);
 
