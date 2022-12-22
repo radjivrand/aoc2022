@@ -1,0 +1,624 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"y",
+				"yValue"
+			],
+			[
+				"outp",
+				"outputTail"
+			],
+			[
+				"size",
+				"sizeToFind"
+			],
+			[
+				"calc",
+				"calculateSizes"
+			],
+			[
+				"clea",
+				"clearCommands"
+			],
+			[
+				"se",
+				"segments"
+			],
+			[
+				"find",
+				"findFirstFiles"
+			],
+			[
+				"segm",
+				"segmentRow"
+			],
+			[
+				"inse",
+				"insertPoint"
+			],
+			[
+				"is_a",
+				"is_array"
+			],
+			[
+				"isa",
+				"is_array"
+			],
+			[
+				"unse",
+				"unsetStart"
+			],
+			[
+				"unset",
+				"unsetStart"
+			],
+			[
+				"targ",
+				"targetLineListing"
+			],
+			[
+				"co",
+				"components"
+			],
+			[
+				"mon",
+				"monkey"
+			],
+			[
+				"gmp_m",
+				"gmp_mul"
+			],
+			[
+				"gmp",
+				"gmp_add"
+			],
+			[
+				"monk",
+				"monkeys"
+			],
+			[
+				"wo",
+				"worry"
+			],
+			[
+				"preg_ma",
+				"preg_match_all"
+			],
+			[
+				"array_fil",
+				"array_filter"
+			],
+			[
+				"array_u",
+				"array_unique"
+			],
+			[
+				"array_p",
+				"array_push"
+			],
+			[
+				"name",
+				"nameAndSize"
+			],
+			[
+				"conta",
+				"containsFolders"
+			],
+			[
+				"array_s",
+				"array_search"
+			],
+			[
+				"cur",
+				"curTreeHeight"
+			],
+			[
+				"getV",
+				"getVisibleTrees"
+			],
+			[
+				"col",
+				"colIndex"
+			],
+			[
+				"row",
+				"rowIndex"
+			],
+			[
+				"folde",
+				"foldersPresent"
+			],
+			[
+				"preg",
+				"preg_match"
+			],
+			[
+				"lin",
+				"lineKey"
+			],
+			[
+				"has",
+				"hasSubdir"
+			],
+			[
+				"exp",
+				"explode"
+			],
+			[
+				"preg_",
+				"preg_match"
+			],
+			[
+				"curre",
+				"curl_multi_remove_handle"
+			],
+			[
+				"instr",
+				"instructions"
+			],
+			[
+				"array_c",
+				"array_column"
+			],
+			[
+				"sta",
+				"stack"
+			],
+			[
+				"ins",
+				"instructions"
+			],
+			[
+				"pre",
+				"preg_replace"
+			],
+			[
+				"sec",
+				"secondArr"
+			],
+			[
+				"chec",
+				"crack_check"
+			],
+			[
+				"lett",
+				"lettersFromTrips"
+			],
+			[
+				"lete",
+				"lettersFromTrips"
+			],
+			[
+				"str_s",
+				"str_split"
+			],
+			[
+				"tri",
+				"triples"
+			],
+			[
+				"splI",
+				"splitInHalf"
+			],
+			[
+				"pr",
+				"priority"
+			],
+			[
+				"fir",
+				"firstArr"
+			],
+			[
+				"cont",
+				"contArr"
+			],
+			[
+				"game",
+				"gamescore"
+			],
+			[
+				"C",
+				"Calorie"
+			],
+			[
+				"aoc",
+				"aoc2022"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "run.php",
+			"settings":
+			{
+				"buffer_size": 1253,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Register.php",
+			"settings":
+			{
+				"buffer_size": 1035,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"php",
+				"Set Syntax: PHP"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 199.0,
+		"history":
+		[
+			"l"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/arne/dev/aoc2022"
+	],
+	"file_history":
+	[
+		"/Users/arne/dev/aoc2022/input_09/input_test_2.txt",
+		"/Users/arne/dev/aoc2022/Rope.php",
+		"/Users/arne/dev/aoc2022/Snake.php",
+		"/Users/arne/dev/aoc2022/Calorie.php",
+		"/Users/arne/dev/aoc2022/1.php",
+		"/Users/arne/dev/aoc2022/Sorter.php",
+		"/Users/arne/dev/aoc2022/input_07/input_test.txt",
+		"/Users/arne/dev/aoc2022/input_07/input_test_2.txt",
+		"/Users/arne/dev/aoc2022/Filesystem.php",
+		"/Users/arne/dev/aoc2022/Fs.php",
+		"/Users/arne/dev/aoc2022/input_07/input.txt",
+		"/Users/arne/dev/aoc2022/input_11/input_test.txt",
+		"/Users/arne/dev/aoc2022/input_11/input.txt",
+		"/Users/arne/dev/aoc2022/Monkey.php",
+		"/Users/arne/dev/aoc2022/Crane.php",
+		"/Users/arne/dev/aoc2022/input_09/input_test.txt",
+		"/Users/arne/dev/aoc2022/input_10/input_test2.txt",
+		"/Users/arne/dev/aoc2022/input_10/input_test.txt",
+		"/Users/arne/dev/aoc2022/Register.php",
+		"/Users/arne/dev/aoc2022/Tree.php",
+		"/Users/arne/dev/aoc2022/input_08/input.txt",
+		"/Users/arne/dev/aoc2022/input_08/input_test.txt",
+		"/Users/arne/dev/aoc2022/Radio.php",
+		"/Users/arne/dev/aoc2022/input_06/input_test.txt",
+		"/Users/arne/dev/aoc2022/input_06/input.txt",
+		"/Users/arne/dev/aoc2022/input_05/input.txt",
+		"/Users/arne/dev/aoc2022/input_05/input_test.txt",
+		"/Users/arne/dev/aoc2022/Cleaner.php",
+		"/Users/arne/dev/aoc2022/RuckSack.php",
+		"/Users/arne/dev/aoc2022/input_04/input.txt",
+		"/Users/arne/dev/aoc2022/input_04/input_test.txt",
+		"/Users/arne/dev/aoc2022/run.php",
+		"/Users/arne/dev/aoc2022/input_03/input.txt",
+		"/Users/arne/dev/aoc2022/input_03/input_test.txt",
+		"/Users/arne/.gitignore",
+		"/Users/arne/dev/aoc2022/.gitignore",
+		"/Users/arne/dev/aoc2022/RockPaperScissors.php",
+		"/Users/arne/dev/aoc2022/input_02/input_test.txt",
+		"/Users/arne/dev/aoc2022/input_01/input.txt",
+		"/Users/arne/dev/aoc2022/input_01/input_test.txt",
+		"/opt/homebrew/etc/php/8.1/php.ini",
+		"/Users/arne/.zshrc",
+		"/Users/arne/.zprofile",
+		"/opt/homebrew/etc/httpd/httpd.conf",
+		"/opt/homebrew/etc/httpd/extra/httpd-php.conf",
+		"/opt/homebrew/etc/httpd/extra/httpd-vhosts.conf",
+		"/etc/hosts",
+		"/etc/apache2/httpd.conf",
+		"/private/etc/apache2/users/arne.conf",
+		"/private/etc/apache2/httpd.conf",
+		"/private/etc/apache2/extra/httpd-userdir.conf",
+		"/etc/apache2/extra/httpd-userdir.conf"
+	],
+	"find":
+	{
+		"height": 45.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"y",
+			"key",
+			"value",
+			"range",
+			"$if",
+			"diff",
+			"x",
+			"outp",
+			"$x",
+			"if (",
+			"return true;",
+			"x",
+			"print",
+			"x",
+			"isClose",
+			"x",
+			"curTailPos",
+			"20",
+			"1",
+			"0",
+			"curTailPos",
+			"x",
+			"y",
+			"x",
+			"y",
+			"x",
+			"y",
+			"this->curTailPos",
+			"curHeadPos",
+			"if",
+			"yT",
+			"yH",
+			"xT",
+			"xH",
+			"curHeadPos",
+			"$this->curHeadPos",
+			"curHeadPos",
+			"print_r",
+			"print_r($sum)",
+			"sum",
+			"curIndex",
+			"matches[1]",
+			"'dir",
+			"folderName",
+			"insertPoint",
+			"findFirstFiles",
+			"print_r",
+			"dirname",
+			"int",
+			"worry",
+			"operand",
+			"pos",
+			"$parts",
+			"first",
+			"x",
+			" --;",
+			" ++;",
+			"while",
+			"x",
+			"while (!$this->tailIsNear());",
+			"y",
+			"!=",
+			"curHeadPos",
+			"&&",
+			"HeadPos",
+			"n']",
+			"]",
+			"x",
+			"curVal",
+			"register",
+			"print",
+			"624443",
+			"62443",
+			"left",
+			"336",
+			"left",
+			",",
+			"return",
+			"qld",
+			"sizeNotPresent",
+			"res",
+			"prin",
+			";",
+			"to",
+			"from",
+			"$",
+			"&$",
+			"currentArr",
+			"first",
+			"TeamArr",
+			"$firstTeamArr",
+			"first",
+			", ",
+			"error_log",
+			"log_err",
+			"error_log"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "run.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1253,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								231,
+								231
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Register.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1035,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 33.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "aoc2022.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"reg",
+				"Register.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
