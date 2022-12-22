@@ -6,6 +6,7 @@ Class Register {
 	public $testPath = '/Users/arne/dev/aoc2022/input_10/input_test.txt';
 	public $lines;
 	public $cycles;
+	public $vals;
 
 	public function __construct(string $test)
 	{
@@ -21,33 +22,50 @@ Class Register {
 		}
 
 		$this->run();
+		$this->outputCrt();
 	}
 
 	public function run()
 	{
 		$x = 1;
-		$vals = [0 => $x];
+		$this->vals = [0 => $x];
 		$cycles = 0;
 		foreach ($this->lines as $key => $line) {
-			if ($line['op'] == 'noop') {
+			$cycles++;
+			$this->vals[$cycles] = $x;
+
+			if ($line['op'] == 'addx') {
 				$cycles++;
-				$vals[$cycles] = $x;
-			} else {
-				$cycles++;
-				$vals[$cycles] = $x;
-				$cycles++;
-				$vals[$cycles] = $x;
+				$this->vals[$cycles] = $x;
 				$x += $line['param'];
 			}
+
 		}
 
 		$res = 0;
+
 		foreach ([20, 60, 100, 140, 180, 220] as $value) {
-			$res += $value * $vals[$value];
+			$res += $value * $this->vals[$value];
 		}
+	}
 
-		print_r($vals);
+	public function outputCrt()
+	{
+		$currentIndex = 2;
+		foreach (range(0, 5) as $rowVal) {
+			foreach (range(0, 40) as $colVal) {
+				$spriteCenter = $this->vals[$rowVal * 40 + $colVal + 1];
+				$spritePos = range($spriteCenter - 1, $spriteCenter + 1);
 
-		print_r($res);
+				$crtPos = $colVal;
+
+				if (in_array($crtPos, $spritePos)) {
+					print_r('#');
+				} else {
+					print_r('.');
+				}
+			}
+			print_r(PHP_EOL);
+		}
 	}
 }

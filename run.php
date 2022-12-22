@@ -11,11 +11,8 @@ error_reporting(-1);
 
 $runMode = $argv[1] ?? '';
 
-// $r = new Register($runMode);
-// $rope = new Rope($runMode);
-$snake = new Snake($runMode);
+$r = new Register($runMode);
 // $m = new Monkey($runMode);
-
 
 // echo PHP_EOL;
 // echo PHP_EOL;
@@ -63,3 +60,6 @@ echo PHP_EOL;
 // ex 8
 // $tree = new Tree($runMode);
 
+// ex 9
+// $rope = new Rope($runMode);
+// $snake = new Snake($runMode);
