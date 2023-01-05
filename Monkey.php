@@ -6,6 +6,7 @@ Class Monkey {
 	public $testPath = '/Users/arne/dev/aoc2022/input_11/input_test.txt';
 	public $lines;
 	public $monkeys = [];
+	public $prod = 1;
 
 	public function __construct(string $test)
 	{
@@ -48,54 +49,59 @@ Class Monkey {
 			$this->monkeys[] = $monkey;
 		}
 
-		$a = time();
-		for ($i=0; $i < 10 ; $i++) { 
+		$dividers = array_column($this->monkeys, 'divider');
+		foreach ($dividers as $key => $value) {
+			$this->prod *= $value;
+		}
+
+		$start = microtime(true);
+
+		for ($i=0; $i < 10000 ; $i++) { 
 			$this->run();
 		}
 
+		$end = microtime(true);
+		print_r(($end - $start));
+		print_r(PHP_EOL);
+
+
 		$res = 1;
 		$duo = array_column($this->monkeys, 'count');
-		// rsort($duo);
-		$res = $duo[0] * $duo[1];
-		print_r($duo);
+		rsort($duo);
+		$res = gmp_mul($duo[0], $duo[1]);
+		print_r($res);
 
-		print_r(PHP_EOL);
-		$b = time();
-		print_r($b - $a);
-		print_r(PHP_EOL);
-		// print_r($res);
+	}
+
+	public function applyDividers($number)
+	{
+		$modulo = $number % $this->prod;
+		$times = ($number - $modulo) / $this->prod;
+
+		$number -= $this->prod * $times;
+
+		return $number;
 	}
 
 	public function run()
 	{
 		foreach ($this->monkeys as &$monkey) {
 			foreach ($monkey['items'] as $itKey => $item) {
-				// print_r($item . PHP_EOL);
 				$a = ($monkey['first'] == 'old') ? $item : $monkey['first'];
 				$b = ($monkey['second'] == 'old') ? $item : $monkey['second'];
 
-				print_r($a);
 				if ($monkey['operand'] == '+') {
-					print_r('+');
-					$worry = gmp_add($a, $b);
+					$worry = $a + $b;
 				} else {
-					$worry = gmp_mul($a, $b);
-					print_r('*');
+					$worry = $a * $b;
 				}
-				print_r($b);
-
-				// $worry = floor($worry / 3);
-
-				// print_r('worry: ' . $worry . PHP_EOL);
 
 				if (gmp_mod($worry, $monkey['divider']) == 0) {
-					print_r('mod ' . $monkey['divider'] . ' is 0');
-					$this->monkeys[$monkey['pos']]['items'][] = $worry;
+					$this->monkeys[$monkey['pos']]['items'][] = $this->applyDividers($worry);
 				} else {
-					print_r('mod ' . $monkey['divider'] . ' is not 0');
-					$this->monkeys[$monkey['neg']]['items'][] = $worry;
+					$this->monkeys[$monkey['neg']]['items'][] = $this->applyDividers($worry);
 				}
-				print_r(PHP_EOL);
+
 				unset($monkey['items'][$itKey]);
 				$monkey['count']++;
 			}
