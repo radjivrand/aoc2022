@@ -11,10 +11,8 @@ error_reporting(-1);
 
 $runMode = $argv[1] ?? '';
 
-$pair = new Opener($runMode);
 // $maze = new Dijk($runMode);
 
-// echo PHP_EOL;
 // echo PHP_EOL;
 // echo '##################' . PHP_EOL;
 // echo '###  AoC 2022  ###' . PHP_EOL;
@@ -70,4 +68,8 @@ echo PHP_EOL;
 // $m = new Monkey($runMode);
 
 // ex13
+// $pair = new Opener($runMode);
 // $pair = new Pair($runMode); // fail
+
+// ex 14
+// $sand = new Hourglass($runMode);
