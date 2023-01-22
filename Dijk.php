@@ -63,7 +63,6 @@ Class Dijk {
 		foreach ($this->visited as $key => $value) {
 			$candidates = $this->getNeighbours($value);
 			$current = $value[3];
-			print_r($current . PHP_EOL);
 			$current = $this->lines[$value[0]][$value[1]];
 			foreach ($candidates as $k => $cell) {
 				if ($this->isWall($cell, $current) || $this->isVisited($cell) || $this->finished) {
@@ -83,7 +82,7 @@ Class Dijk {
 
 	public function isWall($arr, $current)
 	{
-		if (ord($current) - ord($this->lines[$arr[0]][$arr[1]]) <= 1) {
+		if (ord($current) - ord($arr[3]) <= 1 || ord($current) > ord($arr[3])) {
 			return false;
 		}
 

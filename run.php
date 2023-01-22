@@ -11,7 +11,8 @@ error_reporting(-1);
 
 $runMode = $argv[1] ?? '';
 
-$cal = new Dijk($runMode);
+$pair = new Opener($runMode);
+// $maze = new Dijk($runMode);
 
 // echo PHP_EOL;
 // echo PHP_EOL;
@@ -67,3 +68,6 @@ echo PHP_EOL;
 // $r = new Register($runMode);
 // ex 11
 // $m = new Monkey($runMode);
+
+// ex13
+// $pair = new Pair($runMode); // fail
