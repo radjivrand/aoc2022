@@ -12,6 +12,7 @@ error_reporting(-1);
 $runMode = $argv[1] ?? '';
 
 // $maze = new Dijk($runMode);
+$b = new Manhattan($runMode);
 
 // echo PHP_EOL;
 // echo '##################' . PHP_EOL;
@@ -73,3 +74,8 @@ echo PHP_EOL;
 
 // ex 14
 // $sand = new Hourglass($runMode);
+
+// $ex15
+// first part
+// $b = new Manhattan($runMode);
+
