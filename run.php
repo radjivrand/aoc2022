@@ -12,7 +12,9 @@ error_reporting(-1);
 $runMode = $argv[1] ?? '';
 
 // $maze = new Dijk($runMode);
-$b = new Manhattan($runMode);
+// $b = new Manhattan($runMode);
+
+$cube = new Cubes($runMode);
 
 // echo PHP_EOL;
 // echo '##################' . PHP_EOL;
