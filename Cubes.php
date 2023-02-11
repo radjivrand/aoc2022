@@ -8,6 +8,7 @@ Class Cubes {
     protected $input;
     protected $cubes;
     protected $height;
+    protected $threeD;
 
     public function __construct(string $test)
     {
@@ -17,7 +18,57 @@ Class Cubes {
         $this->parseCubes();
         $this->height = count($this->input);
         $count = $this->run();
-        print_r($count);
+        // print_r($count);
+        // print_r($this->cubes);
+        // $this->getThreeDee();
+
+        $this->drawCubes();
+    }
+
+    // public function getThreeDee($value='')
+    // {
+    //     $arr = [];
+    //     foreach ($this->cubes as $value) {
+    //         $arr[$value['z']][] = ['x' => $value['x'], 'y' => $value['y']];
+
+    //     }
+
+    //     ksort($arr);
+
+    //     $newArr = [];
+
+    //     foreach ($arr as $levelkey => $level) {
+    //         $tiny = [];
+    //         foreach ($level as $pair) {
+    //             $tiny[$pair['y']][] = $pair['x'];
+    //         }
+    //         ksort($tiny);
+    //         $newArr[$levelkey] = $tiny;
+    //     }
+
+    //     $this->threeD = $newArr;
+    //     print_r($newArr);
+    // }
+
+    public function drawCubes()
+    {
+        foreach (range(0,22) as $zkey => $zvalue) {
+            foreach (range(0,22) as $ykey => $yvalue) {
+                foreach (range(0,22) as $xkey => $xvalue) {
+                    // print_r('x: ' . $xvalue . ', y: ' . $yvalue . ', z: ' . $zvalue);
+                    // print_r(PHP_EOL);
+                    $res = array_filter($this->cubes, function($elem) use ($xvalue, $yvalue, $zvalue) {
+                        return $elem == ['x' => $xvalue, 'y' => $yvalue, 'z' => $zvalue];
+                    });
+
+                    print_r(!empty($res) ? '#' : '.');
+                }
+                print_r(PHP_EOL);
+            }
+            print_r(PHP_EOL);
+        }
+
+
     }
 
     public function run()
