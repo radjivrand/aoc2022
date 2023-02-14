@@ -17,58 +17,69 @@ Class Cubes {
 
         $this->parseCubes();
         $this->height = count($this->input);
-        $count = $this->run();
         // print_r($count);
         // print_r($this->cubes);
-        // $this->getThreeDee();
-
+        $this->getThreeDee();
+        $this->patchSingleHoles();
         $this->drawCubes();
+        $count = $this->run();
+
+        // print_r($this->threeD);
     }
 
-    // public function getThreeDee($value='')
-    // {
-    //     $arr = [];
-    //     foreach ($this->cubes as $value) {
-    //         $arr[$value['z']][] = ['x' => $value['x'], 'y' => $value['y']];
+    public function patchSingleHoles()
+    {
+        foreach (range(1, 22) as $zkey => $zvalue) {
+            foreach (range(1, 22) as $ykey => $yvalue) {
+                foreach (range(1, 22) as $xkey => $xvalue) {
+                    if (
+                        isset($this->threeD[$zvalue - 1][$yvalue][$xvalue])
+                        && isset($this->threeD[$zvalue + 1][$yvalue][$xvalue])
+                        && isset($this->threeD[$zvalue][$yvalue - 1][$xvalue])
+                        && isset($this->threeD[$zvalue][$yvalue + 1][$xvalue])
+                        && isset($this->threeD[$zvalue][$yvalue][$xvalue - 1])
+                        && isset($this->threeD[$zvalue][$yvalue][$xvalue + 1])
+                    ) {
+                       $this->threeD[$zvalue][$yvalue][$xvalue] = true; 
+                    }
+                }
+            }
+        }
+    }
 
-    //     }
+    public function getThreeDee($value='')
+    {
+        $arr = [];
+        foreach ($this->cubes as $value) {
+            $arr[$value['z']][] = ['x' => $value['x'], 'y' => $value['y']];
 
-    //     ksort($arr);
+        }
 
-    //     $newArr = [];
+        ksort($arr);
 
-    //     foreach ($arr as $levelkey => $level) {
-    //         $tiny = [];
-    //         foreach ($level as $pair) {
-    //             $tiny[$pair['y']][] = $pair['x'];
-    //         }
-    //         ksort($tiny);
-    //         $newArr[$levelkey] = $tiny;
-    //     }
+        $newArr = [];
+        foreach ($arr as $levelkey => $level) {
+            $tiny = [];
+            foreach ($level as $pair) {
+                $tiny[$pair['y']][$pair['x']] = true;
+            }
+            ksort($tiny);
+            $newArr[$levelkey] = $tiny;
+        }
 
-    //     $this->threeD = $newArr;
-    //     print_r($newArr);
-    // }
-
+        $this->threeD = $newArr;
+    }
     public function drawCubes()
     {
         foreach (range(0,22) as $zkey => $zvalue) {
             foreach (range(0,22) as $ykey => $yvalue) {
                 foreach (range(0,22) as $xkey => $xvalue) {
-                    // print_r('x: ' . $xvalue . ', y: ' . $yvalue . ', z: ' . $zvalue);
-                    // print_r(PHP_EOL);
-                    $res = array_filter($this->cubes, function($elem) use ($xvalue, $yvalue, $zvalue) {
-                        return $elem == ['x' => $xvalue, 'y' => $yvalue, 'z' => $zvalue];
-                    });
-
-                    print_r(!empty($res) ? '#' : '.');
+                    print_r(isset($this->threeD[$zvalue][$yvalue][$xvalue]) ? '#' : '.');
                 }
                 print_r(PHP_EOL);
             }
             print_r(PHP_EOL);
         }
-
-
     }
 
     public function run()
