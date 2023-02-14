@@ -14,8 +14,8 @@ $runMode = $argv[1] ?? '';
 // $maze = new Dijk($runMode);
 // $b = new Manhattan($runMode);
 // $cube = new Cubes($runMode);
+$cube = new Tetris($runMode);
 
-$yell = new Yell($runMode);
 
 // echo PHP_EOL;
 // echo '##################' . PHP_EOL;
@@ -82,3 +82,5 @@ echo PHP_EOL;
 // first part
 // $b = new Manhattan($runMode);
 
+// ex 21
+// $yell = new Yell($runMode);
