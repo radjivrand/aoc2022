@@ -63,6 +63,7 @@ Class Piece {
     public function moveDown()
     {
         $newLoc = [];
+        $this->previousLoc = $this->loc;
         foreach ($this->loc as $key => $row) {
             $newLoc[$key - 1] = $row;
         }
