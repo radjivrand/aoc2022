@@ -8,27 +8,48 @@ Class Tetris {
     protected $input;
     protected $instructions;
     protected $map = [];
-    public static $mapHeight;
+    public static $mapHeight = 0;
     public static $horLimits = [
         'left' => 0,
         'right' => 6,
     ];
-    protected $curDirIndex = 0;
+    protected $curDirIndex = -1;
+    protected $curPiece;
+    protected $flag = false;
 
     public function __construct(string $test)
     {
         $fileName = $test == '' ? self::FILE_PATH : self::TEST_FILE_PATH;
         $this->input = file($fileName, FILE_IGNORE_NEW_LINES);
         $this->instructions = str_split($this->input[0]);
+        $this->run(130);
+        print_r(Tetris::$mapHeight . PHP_EOL);
 
-        $this->run();
+        // every 1740th piece
+        // gains height of 2716 units
+
+        // 1050 pieces ... 1740 x n pieces ... 130 pieces
+        // 1643 height ... 2716 x n pieces ... 199 height ?? 215?
+        // 1842 ja 1858 vahel
+
+        $piecesInTheEnd = gmp_mod(gmp_sub(1000000000000, 1050), 1740);
+        print_r($piecesInTheEnd);
+        $divided = gmp_div(gmp_sub(gmp_sub(1000000000000, 1050), $piecesInTheEnd), 1740) ;
+
+        $newHeight = gmp_add(gmp_mul($divided, 2716), 1857);
+        print_r($newHeight);
+        // 1560919540230 too low
+        // 1560919540246 too high
+        // 1514285714288
+
     }
 
-    public function run()
+    public function run($amount)
     {
-        $p = new Piece();
+        $p = new Piece();        
+        $this->curPiece = $p;
 
-        foreach (range(0,5) as $counter) {
+        foreach (range(0, $amount) as $counter) {
             $canMoveDown = true;
 
             while ($canMoveDown) {
@@ -43,17 +64,22 @@ Class Tetris {
                 if (!$this->canBePlaced($p)) {
                     $p->undoLastMove();
                     $this->drop($p);
-                    $this->drawMap();
                     $canMoveDown = false;
-                    $p = $p->getNext();
                 }
+            }
+
+            $p = $p->getNext();
+
+            if ($this->flag) {
+                print_r('piece no: ' . $counter . PHP_EOL);
+                $this->flag = false;
             }
         }
     }
 
-    public function canBePlaced(Piece $piece)
+    public function canBePlaced($p)
     {
-        foreach ($piece->loc as $key => $row) {
+        foreach ($p->loc as $key => $row) {
             if ($key < 0) {
                 return false;
             }
@@ -78,16 +104,29 @@ Class Tetris {
                 $this->map[$rowKey][$value] = true;
             }
         }
+
+        Tetris::$mapHeight = count($this->map);
+
+        if (isset(($this->map[Tetris::$mapHeight - 1])) && array_sum($this->map[Tetris::$mapHeight - 1]) == 7) {
+            print_r(Tetris::$mapHeight . PHP_EOL);
+            $this->flag = true;
+        }
     }
 
     public function drawMap()
     {
-        foreach (range(10,0) as $yvalue) {
+        foreach (range(20,0) as $yvalue) {
             foreach (range(0,6) as $xvalue) {
-                print_r(isset($this->map[$yvalue][$xvalue]) ? '#' : '.');
+                $map = isset($this->map[$yvalue][$xvalue]) ? '#' : '.';
+                $piece = '';
+                if (isset($this->curPiece->loc[$yvalue]) && in_array($xvalue, $this->curPiece->loc[$yvalue])) {
+                    $piece = '@';
+                }
+                print_r($piece != '' ? $piece : $map);                
             }
             print_r(PHP_EOL);
         }
+        print_r(PHP_EOL);
     }
 
     public function getNextDirection()
