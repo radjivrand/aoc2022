@@ -11,6 +11,7 @@ Class Dijk {
 
 	public $counter = 0;
 	public $visited = [];
+	public $lines;
 	public $start;
 	public $end;
 	public $finished = false;
@@ -41,7 +42,7 @@ Class Dijk {
 		$map = $this->mapCounters();
 
 		// print_r($this->visited);
-		// $this->printMaze($map);
+		$this->printMaze($map);
 
 		print_r($this->counter);
 	}
