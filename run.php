@@ -14,6 +14,7 @@ $runMode = $argv[1] ?? '';
 // $maze = new Dijk($runMode);
 // $b = new Manhattan($runMode);
 // $cube = new Cubes($runMode);
+$res = new Laby($runMode);
 
 
 // echo PHP_EOL;

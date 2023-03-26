@@ -21,10 +21,10 @@ Class Cubes {
         // print_r($this->cubes);
         $this->getThreeDee();
         $this->patchSingleHoles();
-        $this->drawCubes();
+        // $this->drawCubes();
         $count = $this->run();
 
-        // print_r($this->threeD);
+        print_r($this->threeD);
     }
 
     public function patchSingleHoles()
