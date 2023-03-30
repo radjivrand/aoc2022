@@ -11,10 +11,7 @@ error_reporting(-1);
 
 $runMode = $argv[1] ?? '';
 
-// $maze = new Dijk($runMode);
-// $b = new Manhattan($runMode);
 // $cube = new Cubes($runMode);
-$res = new Laby($runMode);
 
 
 // echo PHP_EOL;
@@ -71,6 +68,10 @@ echo PHP_EOL;
 // ex 11
 // $m = new Monkey($runMode);
 
+// ex 12
+// $maze = new Dijk($runMode);
+// $res = new Laby($runMode);
+
 // ex13
 // $pair = new Opener($runMode);
 // $pair = new Pair($runMode); // fail
@@ -81,6 +82,7 @@ echo PHP_EOL;
 // ex15
 // first part
 // $b = new Manhattan($runMode);
+// $b = new BeaconFinder($runMode);
 
 // ex 17
 // $tetris = new Tetris($runMode);
