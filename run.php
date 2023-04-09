@@ -11,8 +11,6 @@ error_reporting(-1);
 
 $runMode = $argv[1] ?? '';
 
-// $cube = new Cubes($runMode);
-
 
 // echo PHP_EOL;
 // echo '##################' . PHP_EOL;
@@ -86,6 +84,9 @@ echo PHP_EOL;
 
 // ex 17
 // $tetris = new Tetris($runMode);
+
+// ex 18
+// $cube = new Cubes($runMode);
 
 // ex 21
 // $yell = new Yell($runMode);
