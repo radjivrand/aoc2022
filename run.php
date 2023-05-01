@@ -11,9 +11,9 @@ error_reporting(-1);
 
 $runMode = $argv[1] ?? '';
 
-$forest = new Forest($runMode);
 
 // $valve = new Valve($runMode);
+$rubik = new Rubik($runMode);
 
 
 // echo PHP_EOL;
@@ -94,3 +94,8 @@ echo PHP_EOL;
 
 // ex 21
 // $yell = new Yell($runMode);
+
+// ex 22 pt I
+// $forest = new Forest($runMode);
+// $rubik = new Rubik($runMode);
+
