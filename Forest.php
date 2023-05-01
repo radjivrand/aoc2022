@@ -5,17 +5,28 @@ namespace aoc2022;
 // 109224 too high
 // 64256 is right!
 
+// part II
+// 9029 too low
+// 10033 too low
+
 Class Forest {
     const FILE_PATH = '/Users/arne/dev/aoc2022/input_22/input.txt';
     const TEST_FILE_PATH = '/Users/arne/dev/aoc2022/input_22/input_test.txt';
+    const RIGHT = 0;
+    const DOWN = 1;
+    const LEFT = 2;
+    const UP = 3;
 
     protected $input;
     protected $split;
     protected $map = [];
     protected $instructions;
+    protected $mode = '3d';
+    protected $test;
 
     public function __construct(string $test)
     {
+        $this->test = $test != '';
         $fileName = $test == '' ? self::FILE_PATH : self::TEST_FILE_PATH;
         $this->input = file($fileName, FILE_IGNORE_NEW_LINES);
         $this->split = $test == '' ? 199 : 11;
@@ -24,7 +35,123 @@ Class Forest {
         $cursor = new Cursor($this->findStart(), 0, 0);
         $this->walk($cursor);
 
-        print_r(($cursor->y + 1) * 1000 + ($cursor->x + 1) * 4 + $cursor->facing);
+        $positions = [
+            ['x' => 0, 'y' => 99, 'facing' => $this::UP],
+            ['x' => 49, 'y' => 99, 'facing' => $this::UP],
+            ['x' => 50, 'y' => -1, 'facing' => $this::UP],
+            ['x' => 99, 'y' => -1, 'facing' => $this::UP],
+            ['x' => 100, 'y' => -1, 'facing' => $this::UP],
+            ['x' => 149, 'y' => -1, 'facing' => $this::UP],
+
+            ['x' => 150, 'y' => 0, 'facing' => $this::RIGHT],
+            ['x' => 150, 'y' => 49, 'facing' => $this::RIGHT],
+            ['x' => 100, 'y' => 50, 'facing' => $this::RIGHT],
+            ['x' => 100, 'y' => 99, 'facing' => $this::RIGHT],
+            ['x' => 100, 'y' => 100, 'facing' => $this::RIGHT],
+            ['x' => 100, 'y' => 149, 'facing' => $this::RIGHT],
+            ['x' => 50, 'y' => 150, 'facing' => $this::RIGHT],
+            ['x' => 50, 'y' => 199, 'facing' => $this::RIGHT],
+
+            ['x' => 0, 'y' => 200, 'facing' => $this::DOWN],
+            ['x' => 49, 'y' => 200, 'facing' => $this::DOWN],
+            ['x' => 50, 'y' => 150, 'facing' => $this::DOWN],
+            ['x' => 99, 'y' => 150, 'facing' => $this::DOWN],
+            ['x' => 100, 'y' => 50, 'facing' => $this::DOWN],
+            ['x' => 149, 'y' => 50, 'facing' => $this::DOWN],
+
+            ['x' => 49, 'y' => 0, 'facing' => $this::LEFT],
+            ['x' => 49, 'y' => 49, 'facing' => $this::LEFT],
+            ['x' => 49, 'y' => 50, 'facing' => $this::LEFT],
+            ['x' => 49, 'y' => 99, 'facing' => $this::LEFT],
+            ['x' => -1, 'y' => 100, 'facing' => $this::LEFT],
+            ['x' => -1, 'y' => 149, 'facing' => $this::LEFT],
+            ['x' => -1, 'y' => 150, 'facing' => $this::LEFT],
+            ['x' => -1, 'y' => 199, 'facing' => $this::LEFT],
+        ];
+
+        // foreach ($positions as $testPos) {
+        //     $outBound = $this->isOutOfBounds($testPos);
+        //     // print_r($outBound ? 'out' : 'in');
+
+        //     // print_r($testPos);
+
+
+        //     $res = $this->getWrappedPos($testPos);
+        //     // print_r($res);
+
+        //     print_r('to ' . $this->saySquare($res));
+        //     print_r(PHP_EOL);
+
+        //     print_r('________________' . PHP_EOL . PHP_EOL);
+        // }
+
+
+        print_r($cursor);
+        print_r($this->saySquare(['x' => $cursor->x, 'y' => $cursor->y, 'facing' => $cursor->facing]));
+        // print_r(1000 * 9 + 4 * 6 + 5);
+
+        // print_r(($cursor->y + 1) * 1000 + ($cursor->x + 1) * 4 + $cursor->facing);
+    }
+
+    public function saySquare($position)
+    {
+        $dirString = '';
+        switch ($position['facing']) {
+            case 0:
+                $dirString = 'RIGHT';
+                break;
+            case 1:
+                $dirString = 'DOWN';
+                break;
+            case 2:
+                $dirString = 'LEFT';
+                break;
+            case 3:
+                $dirString = 'UP';
+                break;
+        }
+
+        if (
+            in_array($position['x'], range(50, 99))
+            && in_array($position['y'], range(0, 49))
+        ) {
+            return 'CYAN ' . $dirString;
+        }
+
+        if (
+            in_array($position['x'], range(100, 149))
+            && in_array($position['y'], range(0, 49))
+        ) {
+            return 'MAGENTA ' . $dirString;
+        }
+
+        if (
+            in_array($position['x'], range(50, 99))
+            && in_array($position['y'], range(50, 99))
+        ) {
+            return 'GREEN ' . $dirString;
+        }
+
+        if (
+            in_array($position['x'], range(0, 49))
+            && in_array($position['y'], range(100, 149))
+        ) {
+            return 'RED ' . $dirString;
+        }
+
+        if (
+            in_array($position['x'], range(50, 99))
+            && in_array($position['y'], range(100, 149))
+        ) {
+            return 'BLUE ' . $dirString;
+        }
+
+        if (
+            in_array($position['x'], range(0, 49))
+            && in_array($position['y'], range(150, 199))
+        ) {
+            return 'ORANGE ' . $dirString;
+        }
     }
 
     public function printMap($map)
@@ -69,8 +196,203 @@ Class Forest {
         }
     }
 
+    public function getCubePos($position)
+    {
+        //cyan up
+        if (
+            $position['y'] < 0
+            && $position['x'] > 49
+            && $position['x'] < 100
+            && $position['facing'] == 3
+        ) {
+            print_r('from: cyan up' . PHP_EOL);
+            $position['y'] = $position['x'] + 100;
+            $position['x'] = 0;
+            $position['facing'] = 0;
+            return $position;
+        }
+
+        //magenta up
+        if (
+            $position['y'] < 0
+            && $position['x'] > 99
+            && $position['facing'] == 3
+        ) {
+            $position['y'] = 199;
+            print_r('from: magenta up' . PHP_EOL);
+            $position['x'] = $position['x'] - 100;
+            $position['facing'] = 3;
+            return $position;
+        }
+
+        //red up
+        if (
+            $position['y'] < 100
+            && $position['x'] < 50
+            && $position['facing'] == 3
+        ) {
+            $position['y'] = $position['x'] + 50;
+            print_r('from: red up' . PHP_EOL);
+            $position['x'] = 50;
+            $position['facing'] = 0;
+            return $position;
+        }
+
+        //magenta right
+        if (
+            $position['x'] > 149
+            && $position['y'] < 50
+            && $position['facing'] == 0
+        ) {
+            $position['x'] = 99;
+            print_r('from: magenta right' . PHP_EOL);
+            $position['y'] = 149 - $position['y'];
+            $position['facing'] = 2;
+            return $position;
+        }
+
+        //green right
+        if (
+            $position['x'] > 99
+            && $position['y'] > 49
+            && $position['y'] < 100
+            && $position['facing'] == 0
+        ) {
+            print_r('from: green right' . PHP_EOL);
+            $position['x'] = $position['y'] + 50;
+            $position['y'] = 49;
+            $position['facing'] = 3;
+            return $position;
+        }
+
+        //blue right
+        if (
+            $position['x'] > 99
+            && $position['y'] > 99
+            && $position['y'] < 150
+            && $position['facing'] == 0
+        ) {
+            print_r('from: blue right' . PHP_EOL);
+            $position['x'] = 149;
+            $position['y'] = 149 - $position['y'];
+            $position['facing'] = 2;
+            return $position;
+        }
+
+        //orange right
+        if (
+            $position['x'] > 49
+            && $position['y'] > 149
+            && $position['facing'] == 0
+        ) {
+            $position['x'] = $position['y'] - 100;
+            print_r('from: orange right' . PHP_EOL);
+            $position['y'] = 149;
+            $position['facing'] = 3;
+            return $position;
+        }
+
+        //magenta down
+        if (
+            $position['x'] > 99
+            && $position['y'] > 49
+            && $position['facing'] == 1
+        ) {
+            $position['y'] = $position['x'] - 50;
+            print_r('from: magenta down' . PHP_EOL);
+            $position['x'] = 99;
+            $position['facing'] = 2;
+            return $position;
+        }
+
+        //blue down
+        if (
+            $position['x'] > 49
+            && $position['x'] < 100
+            && $position['y'] > 149
+            && $position['facing'] == 1
+        ) {
+            print_r('from: blue down' . PHP_EOL);
+            $position['y'] = $position['x'] + 100;
+            $position['x'] = 49;
+            $position['facing'] = 2;
+            return $position;
+        }
+
+        //orange down
+        if (
+            $position['y'] > 199
+            && $position['x'] < 50
+            && $position['facing'] == 1
+        ) {
+            $position['x'] = $position['x'] + 100;
+            print_r('from: orange down' . PHP_EOL);
+            $position['y'] = 0;
+            $position['facing'] = 1;
+            return $position;
+        }
+
+        //orange left
+        if (
+            $position['y'] > 149
+            && $position['x'] < 0
+            && $position['facing'] == 2
+        ) {
+            $position['x'] = $position['y'] - 100;
+            print_r('from: orange left' . PHP_EOL);
+            $position['y'] = 0;
+            $position['facing'] = 1;
+            return $position;
+        }
+
+        //red left
+        if (
+            $position['y'] > 99
+            && $position['y'] < 150
+            && $position['x'] < 0
+            && $position['facing'] == 2
+        ) {
+            print_r('from: red left' . PHP_EOL);
+            $position['x'] = 50;
+            $position['y'] = 149 - $position['y'];
+            $position['facing'] = 0;
+            return $position;
+        }
+
+        //green left
+        if (
+            $position['y'] > 49
+            && $position['y'] < 100
+            && $position['x'] < 50
+            && $position['facing'] == 2
+        ) {
+            print_r('from: green left' . PHP_EOL);
+            $position['x'] = $position['y'] - 50;
+            $position['y'] = 100;
+            $position['facing'] = 1;
+            return $position;
+        }
+
+        //cyan left
+        if (
+            $position['y'] < 50
+            && $position['x'] < 50
+            && $position['facing'] == 2
+        ) {
+            $position['x'] = 0;
+            print_r('from: cyan left' . PHP_EOL);
+            $position['y'] = 149 - $position['y'];
+            $position['facing'] = 0;
+            return $position;
+        }
+    }
+
     public function getWrappedPos($position)
     {
+        if ($this->mode == '3d') {
+            return $this->getCubePos($position);
+        }
+
         $newPos = $position;
 
         switch ($position['facing']) {
@@ -223,5 +545,6 @@ Class Cursor {
 
         return $this;
     }
+
 }
 
