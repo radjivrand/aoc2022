@@ -13,7 +13,7 @@ $runMode = $argv[1] ?? '';
 
 
 // $valve = new Valve($runMode);
-$rubik = new Rubik($runMode);
+$spinner = new Spinner($runMode);
 
 
 // echo PHP_EOL;
