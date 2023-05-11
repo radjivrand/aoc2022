@@ -15,6 +15,9 @@ Class Spinner {
     protected $unvisited = [];
     protected $sorted = [];
     protected $currentElement = [];
+    protected $visitingList = [];
+
+    private $decr = 811589153;
 
     public function __construct(string $test)
     {
@@ -23,17 +26,28 @@ Class Spinner {
         $this->input = file($fileName, FILE_IGNORE_NEW_LINES);
         
         $this->parseInput();
-        $this->sorted = $this->unvisited = $this->parsedInput;
+        $this->sorted = $this->unvisited = $this->visitingList = $this->parsedInput;
 
+        for ($x = 0; $x < 10; $x++) { 
+            $this->unvisited = $this->visitingList;
+            $this->mix();
+            // print_r($this->sorted);
+        }
+
+        print_r($this->getScore());
+    }
+
+    public function mix()
+    {
         do {
             $this->currentElement = $this->findFirst();
 
             if ($this->currentElement['value'] > 0) {
-                for ($i = 0; $i < $this->currentElement['value']; $i++) {
+                for ($i = 0; $i < ($this->currentElement['value'] % (count($this->sorted) - 1)); $i++) {
                     $this->move('right');
                 }
             } elseif ($this->currentElement['value'] < 0) {
-                for ($j = $this->currentElement['value']; $j < 0; $j++) { 
+                for ($j = ($this->currentElement['value']  % (count($this->sorted) - 1)); $j < 0; $j++) { 
                     $this->move('left');
                 }
             } else {
@@ -41,8 +55,6 @@ Class Spinner {
             }
 
         } while (count($this->unvisited) > 0);
-
-        print_r($this->getScore());
     }
 
     public function findFirst()
@@ -104,7 +116,7 @@ Class Spinner {
     public function parseInput()
     {
         foreach ($this->input as $key => $value) {
-            $this->parsedInput[] = $value . ':' . $key;
+            $this->parsedInput[] = $value * $this->decr . ':' . $key;
         }
     }
 }
