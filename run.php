@@ -11,10 +11,7 @@ error_reporting(-1);
 
 $runMode = $argv[1] ?? '';
 
-
 // $valve = new Valve($runMode);
-$spinner = new Spinner($runMode);
-
 
 // echo PHP_EOL;
 // echo '##################' . PHP_EOL;
@@ -92,10 +89,16 @@ echo PHP_EOL;
 // ex 18
 // $cube = new Cubes($runMode);
 
+// ex 20
+// $spinner = new Spinner($runMode);
+
 // ex 21
 // $yell = new Yell($runMode);
 
 // ex 22 pt I
 // $forest = new Forest($runMode);
 // $rubik = new Rubik($runMode);
+
+// ex 23 done
+// $brown = new brown($runMode);
 
