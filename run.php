@@ -11,7 +11,9 @@ error_reporting(-1);
 
 $runMode = $argv[1] ?? '';
 
+// $storm = new Storm($runMode);
 // $valve = new Valve($runMode);
+$balloon = new Balloon($runMode);
 
 // echo PHP_EOL;
 // echo '##################' . PHP_EOL;
