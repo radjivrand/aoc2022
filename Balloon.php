@@ -34,62 +34,45 @@ Class Balloon {
             $sum += $this->toInt($value);
         }
 
-        // print_r([$sum]);
-        // $this->getRes();
-
-        // print_r([$this->toInt('-121-')]);
-        // print_r($this->toSnafu(8923));
-        // print_r($this->getDigits(578));
-
-        // print_r($this->intervals);
-
-
-        print_r($this->toSnafu(446));
-
-        /**
-         * 
-         * 2679
-         * 6 kohta
-         * ehk alustame 7812
-         * 2679 - 1 * 3125 = -446 (1)
-         * -446 + 1 * 625 = 179 (-)
-         * 179 - 125 = 54 (1)
-         * 54 - 2.* 25 = 4 (2)
-         * 4 - 5 = -1 (1)
-         * -1 - 1 = (-)
-         * 
-         *          
-         **/
-
-        // print_r($this->add('12', '1'));
+        print_r($this->toSnafu($sum));
+        print_r(PHP_EOL);
+        print_r($this->getRes());
     }
 
-    public function toSnafu(int $val, int $power = 0)
+    public function getBestValue(int $number, int $power)
     {
-        if ($power == 0) {
-            $power = $this->findInterval(abs($val));
-        }
-
-        $curMul = 5 ** $power;
-        print_r([abs($val)]);
-        print_r([$curMul]);
-        print_r([5 ** ($power - 1)]);
-
-        while (abs($val) > 5 ** ($power - 1)) {
-            if ($val > 0) {
-                $val = $val - $curMul;
-            } else {
-                $val = $val + $curMul;
+        $smallest = INF;
+        $selected = '';
+        $sum = 5 ** $power;
+        foreach ($this::MAP as $key => $value) {
+            if (abs($number - $value * $sum) < $smallest) {
+                $smallest = abs($number - $value * $sum);
+                $selected = $key;
+            } elseif (abs($number) < $smallest) {
+                $smallest = abs($number);
+                $selected = $key;
             }
-            print_r([$val]);
         }
 
-        print_r($val);
+        return [
+            'value' => $selected,
+            'reminder' => $number - $this::MAP[$selected] * $sum,
+        ];
+    }
 
+    public function toSnafu(int $val)
+    {
+        $power = $this->findInterval(abs($val));
+        $res = [];
 
+        while ($power >= 0) {
+            $ret = $this->getBestValue($val, $power);
+            $val = $ret['reminder'];
+            $res[] = $ret['value'];
+            $power--;
+        }
 
-
-        // return (2 * (5 ** $digits - 1)) % $val;
+        return implode('', $res);
     }
 
     public function findInterval(int $val)
@@ -107,7 +90,7 @@ Class Balloon {
         $reference = 0;
         $power = 0;
 
-        foreach (range(0, 10) as $power) {
+        foreach (range(0, 22) as $power) {
             $reference += (5 ** $power) * 2;
             $this->intervals[$power] = $reference;
         }
