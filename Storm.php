@@ -13,9 +13,6 @@ Class Storm {
     protected $width;
     protected $height;
     protected $sampleMap;
-    protected $windLog = [];
-    protected $currentWind = [];
-    protected $attemptNo = 0;
     protected $mapByWindTurn = [];
 
     //276 + 1? 277!
