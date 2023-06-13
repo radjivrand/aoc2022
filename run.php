@@ -11,7 +11,7 @@ error_reporting(-1);
 
 $runMode = $argv[1] ?? '';
 
-$storm = new Storm($runMode);
+$catan = new Catan($runMode);
 // $valve = new Valve($runMode);
 
 // echo PHP_EOL;
@@ -102,6 +102,9 @@ echo PHP_EOL;
 
 // ex 23 done
 // $brown = new brown($runMode);
+
+// ex 24 done
+// $storm = new Storm($runMode);
 
 // ex 25 pt I
 // $balloon = new Balloon($runMode);
