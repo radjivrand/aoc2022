@@ -15,7 +15,7 @@ Class Valve {
 
         $this->parseInput();
 
-        // print_r($this->valves);
+        print_r($this->valves);
 
         $this->showPossibilities();
     }
