@@ -10,47 +10,107 @@ Class Catan {
     protected $map;
     protected $test;
 
-    protected $ore = 0;
-    protected $clay = 0;
-    protected $obsidian = 0;
-    protected $geode = 0;
+    protected $material = [
+        'ore' => 0,
+        'clay' => 0,
+        'obsidian' => 0,
+        'geode' => 0,
+    ];
 
     protected $robots = [
         'ore' => 1,
-        'clay' => 1,
+        'clay' => 0,
         'obsidian' => 0,
         'geode' => 0,
     ];
 
     protected $minutes = 0;
 
+    protected $choices = [];
+
     public function __construct(string $test)
     {
         $this->setup($test);
 
-        foreach (range(1, 24) as $second) {
-            $this->tick('Blueprint 1');
-            print_r(['robots' => $this->robots]);
-            print_r([$this->ore]);
-            print_r([$this->clay]);
-            print_r([$this->obsidian]);
-            print_r([$this->geode]);
+        $result = [];
+
+        foreach (range(1,10000) as $attempt) {
+            $this->reset();
+
+            foreach (range(1, 24) as $second) {
+                $this->tick('Blueprint 2');
+            }
+
+            $result[$this->material['geode']] = $this->choices;
         }
+
+        ksort($result);
+        print_r($result);
+
+        $this->buildDecisionTree(0, 5);
+
+    }
+
+    public function buildDecisionTree($currentRound, $maxRounds)
+    {
+        if ($currentRound >= $maxRounds) {
+            return null;
+        }
+
+        $root = new Node ('Round ' . ($currentRound++), $this->material, $this->robots);
+        $opts = $this->getAvailableOptions($this->material); // see on puudu
+
+        foreach ($opts as $key => $value) {
+            $childNode = $this->buildDecisionTree($currentRound++, $maxRounds);
+            $root->addChild($childNode);
+        }
+
+        return $root;
+    }
+
+    public function reset()
+    {
+        $this->choices = [];
+        $this->material = [
+            'ore' => 0,
+            'clay' => 0,
+            'obsidian' => 0,
+            'geode' => 0,
+        ];
+
+        $this->robots = [
+            'ore' => 1,
+            'clay' => 0,
+            'obsidian' => 0,
+            'geode' => 0,
+        ];
+
+        $this->minutes = 0;
     }
 
     public function tick($blueprint)
     {
         $bp = $this->map[$blueprint];
         $options = $this->getOptions($bp);
+
         if (!empty($options)) {
-            $selected = $options[0];
+            $rnd = rand(0, count($options) - 1);
+            $selected = $options[$rnd];
+
+            if (isset($bp[$selected])) {
+                foreach ($bp[$selected] as $key => $value) {
+                    $this->material[$key] -= $value;
+                }
+            }
+
+            $this->choices[$this->minutes] = $selected;
         }
 
         foreach ($this->robots as $type => $value) {
-            $this->$type += $value;
+            $this->material[$type] += $value;
         }
 
-        if (isset($selected)) {
+        if (isset($selected) && $selected != 'wait') {
             $this->robots[$selected]++;
         }
         $this->minutes++;
@@ -58,13 +118,7 @@ Class Catan {
 
     public function getOptions($bp)
     {
-        $initial = [
-            'ore' => $this->ore,
-            'clay' => $this->clay,
-            'obsidian' => $this->obsidian,
-            'geode' => $this->geode,
-        ];
-
+        $initial = $this->material;
         $options = [];
 
         foreach ($bp as $type => $component) {
@@ -78,6 +132,10 @@ Class Catan {
             if ($possible) {
                 $options[] = $type;
             }
+        }
+
+        if (count($options) == 1) {
+            $options[] = 'wait';
         }
 
         return $options;
@@ -136,3 +194,21 @@ Class Catan {
     }
 }
 
+Class Node {
+    public $value;
+    public $children = [];
+    public $material;
+    public $robots;
+
+    public function __construct($value, $material, $robots)
+    {
+        $this->value = $value;
+        $this->material = $material;
+        $this->robots = $robots;
+    }
+
+    public function addChild($child)
+    {
+        $this->children[] = $child;
+    }
+}
