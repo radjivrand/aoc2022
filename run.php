@@ -2,6 +2,7 @@
 namespace aoc2022;
 
 ini_set('log_errors', 1);
+ini_set('memory_limit', '8G');
 
 spl_autoload_register(function ($className) {
     require '/Users/arne/dev/' . str_replace('\\', '/', $className) . '.php';
@@ -11,7 +12,6 @@ error_reporting(-1);
 
 $runMode = $argv[1] ?? '';
 
-$catan = new Catan($runMode);
 // $valve = new Valve($runMode);
 
 // echo PHP_EOL;
@@ -89,6 +89,10 @@ echo PHP_EOL;
 
 // ex 18
 // $cube = new Cubes($runMode);
+
+// ex 19
+// $catan = new Rage($runMode);
+// $catan = new Robot($runMode);
 
 // ex 20
 // $spinner = new Spinner($runMode);
