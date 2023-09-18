@@ -12,7 +12,7 @@ error_reporting(-1);
 
 $runMode = $argv[1] ?? '';
 
-// $valve = new Valve($runMode);
+$valve = new Valve($runMode);
 
 // echo PHP_EOL;
 // echo '##################' . PHP_EOL;
