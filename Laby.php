@@ -163,6 +163,7 @@ Class Laby {
 
     public function findNeighbours($address)
     {
+        print_r($address);
         $val = explode('-', $address);
         $up = $val[1] - 1;
         $down = $val[1] + 1;

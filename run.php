@@ -12,7 +12,7 @@ error_reporting(-1);
 
 $runMode = $argv[1] ?? '';
 
-$valve = new Valve($runMode);
+// $valve = new Valve($runMode);
 
 // echo PHP_EOL;
 // echo '##################' . PHP_EOL;
@@ -70,7 +70,7 @@ echo PHP_EOL;
 
 // ex 12
 // $maze = new Dijk($runMode);
-// $res = new Laby($runMode);
+$res = new Laby($runMode);
 
 // ex13
 // $pair = new Opener($runMode);
